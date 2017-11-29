@@ -7,7 +7,6 @@ This repository contains Group14's solution to the 2017 System Integration [bloc
 ### General
 
 * The blockchain has to be able to run on a network of distributed nodes (containers, virtual machines or cloud machines).
-
 * It should be possible to perform simple blockchain *actions*. Examples include:
   * Adding transactions.
   * Block mining.
@@ -16,13 +15,9 @@ This repository contains Group14's solution to the 2017 System Integration [bloc
 ### Formal
 
 * The network has to be P2P network (peer-to-peer).
-
 * The blockchain network should contain at least four (4) nodes.
-
 * A reproducible setup is required. In this case, a bash script that instantiates the blockchain with example nodes and executes a test scenario.
-
 * A screencast or screendumps that demonstrate the blockchain functionality.
-
 * References for **all** information sources used for development/implementation.
 
 ### Optional
@@ -32,7 +27,6 @@ This repository contains Group14's solution to the 2017 System Integration [bloc
 ## Own specifications
 
 * We are writing the blockchain in [Go](https://golang.org/#).
-
 * We are using --TBD-- for our network of nodes.
 
 ## References
