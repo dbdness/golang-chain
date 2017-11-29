@@ -1,6 +1,6 @@
-# golang-chain
+# Blockchain - Group14
 
-This repository contains Group14's solution to the 2017 System Integration blockchain assignment.
+This repository contains Group14's solution to the 2017 System Integration [blockchain assignment](https://github.com/datsoftlyngby/soft2017fall-system-integration-teaching-material/blob/e7729438dd0a3fa1c4cbc2a7b1d3651e8fc4600f/lecture_notes/12-Blockchain_Intro.ipynb).
 
 ## Project requirements
 
