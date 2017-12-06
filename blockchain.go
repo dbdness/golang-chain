@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"fmt"
+	"math/rand"
+	"regexp"
 	"strconv"
 	"time"
 )
@@ -25,9 +27,9 @@ type blockchainService interface {
 }
 
 type Block struct {
-	Index int64
-	Data  []byte
-	//Nonce       int64  `json:"nonce"`
+	Index     int64
+	Data      []byte
+	Nonce     int64
 	Timestamp int64
 	Previous  []byte
 	Proof     []byte
@@ -45,10 +47,26 @@ type Token struct {
 /**
 This calculates the proof of the block. This is a total hashvalue of all the properties
 */
+
+var nonce_gl int64
+
 func (b *Block) SetHash() {
 	timestamp := []byte(strconv.FormatInt(b.Timestamp, 10))
-	headers := bytes.Join([][]byte{b.Previous, b.Data, timestamp}, []byte{})
+	r := regexp.MustCompile(`(^[0]{1})`)
+
+	//fmt.Printf("%x\n", r)
+	nonce := []byte(strconv.FormatInt(rand.Int63n(78000), 10))
+	headers := bytes.Join([][]byte{nonce, b.Previous, b.Data, timestamp}, []byte{})
 	hash := sha256.Sum256(headers)
+	// Will be used as a mine function later on. This is just for testing purposes
+	for !r.Match(hash[:]) {
+		nonce = []byte(strconv.FormatInt(rand.Int63n(78000), 10))
+		headers = bytes.Join([][]byte{nonce, b.Previous, b.Data, timestamp}, []byte{})
+		hash = sha256.Sum256(headers)
+		fmt.Printf("%x = %t\n", hash, r.Match(hash[:]))
+	}
+
+	//b.Nonce = nonce
 	b.Proof = hash[:]
 }
 
@@ -56,7 +74,10 @@ var index int64 = 0
 
 func NewBlock(data string, previousHash []byte) *Block {
 	index++
-	block := &Block{index, []byte(data), time.Now().Unix(), previousHash, []byte{}}
+	rand.Seed(time.Now().UTC().UnixNano())
+	//nonce := rand.Int63n(78000)
+	//fmt.Printf("%d\n", nonce)
+	block := &Block{index, []byte(data), 10, time.Now().Unix(), previousHash, []byte{}}
 	block.SetHash()
 	return block
 }
