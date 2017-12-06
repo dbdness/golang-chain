@@ -109,7 +109,7 @@ func main() {
 		fmt.Printf("Index: %d\n", block.Index)
 		fmt.Printf("Prev hash: %x\n", block.Previous)
 		fmt.Printf("Block Data: %s\n", block.Data)
-		fmt.Printf("Block Proof %x\n", block.Proof)
+		fmt.Printf("Block Proof: %x\n", block.Proof)
 		fmt.Println()
 	}
 }

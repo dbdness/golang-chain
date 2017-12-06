@@ -27,7 +27,7 @@ This repository contains Group14's solution to the 2017 System Integration [bloc
 ## Own specifications
 
 * We are writing the blockchain in [Go](https://golang.org/#).
-* We are using --TBD-- for our network of nodes.
+* We are using `docker-machine` for our network of nodes.
 
 ## References
 
